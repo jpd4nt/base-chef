@@ -6,6 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe "cron"
 
 cron_d "chef-client" do
   minute "*/15"

@@ -9,6 +9,6 @@
 
 cron_d "chef-client" do
   minute "*/15"
-  command "/etc/chef/client.rb -j /etc/chef/dna.json"
+  command "chef-client -c /etc/chef/client.rb -j /etc/chef/dna.json"
   user "root"
 end
