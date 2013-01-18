@@ -19,7 +19,6 @@ cookbook_file '/etc/init.d/chef_client' do
   owner  "root"
   group  "root"
   mode   "0755"
-  variables()
 end
 service "chef_client" do
   action [ :enable, :start ]
