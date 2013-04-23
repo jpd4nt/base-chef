@@ -23,3 +23,18 @@ end
 service "chef_client" do
   action [ :enable, :start ]
 end
+
+case node['platform_family']
+when "rhel", "fedora"
+    execute "yum_update" do
+      command "/usr/bin/yum -y update"
+    end
+when "suse"
+  execute "zypper_update" do
+    command "/usr/bin/zypper -n up"
+  end
+when "debian"
+  execute "apt_update" do
+    command "/usr/bin/apt-get -y upgrade"
+  end
+end
