@@ -1,0 +1,19 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: chef-client
+# Required-Start: $networks
+# Default-Start:  45
+# Default-Stop: 90
+# Short-Description: starts chef-client
+# Description: Starts chef-client on boot so it runs at least once.
+### END INIT INFO
+
+# Source function library.
+. /lib/lsb/init-functions
+
+case "$1" in
+    start)
+      /usr/bin/chef-client -c /etc/chef/client.rb &
+    ;;
+esac
+exit 0
