@@ -8,6 +8,16 @@
 #
 include_recipe "cron"
 
+# Fix for redhat on AWS that sub manager is broke on AWS
+if node['platform'] == "redhat" and node['platform_version'] > 6.0
+  cookbook_file '/etc/yum/pluginconf.d/subscription-manager.conf' do
+    source "subscription-manager.conf"
+    owner  "root"
+    group  "root"
+    mode   "0644"
+  end
+end
+
 cron_d "chef-client" do
   minute "*/15"
   command "chef-client -c /etc/chef/client.rb"
