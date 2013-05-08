@@ -9,7 +9,7 @@
 include_recipe "cron"
 
 # Fix for redhat on AWS that sub manager is broke on AWS
-if node['platform'] == "redhat" and node['platform_version'] > 6.0
+if node['platform'] == "redhat" and node['platform_version'] > '6.0'
   cookbook_file '/etc/yum/pluginconf.d/subscription-manager.conf' do
     source "subscription-manager.conf"
     owner  "root"
