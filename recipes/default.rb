@@ -16,6 +16,16 @@ if node['platform'] == "redhat" and node['platform_version'] > '6.0'
     group  "root"
     mode   "0644"
   end
+  include_recipe "yum::epel"
+end
+
+package "monit" do
+  action :install
+end
+
+service "monit" do
+  supports [:restart, :reload, :status]
+  action :enable
 end
 
 cron_d "chef-client" do
