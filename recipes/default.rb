@@ -30,7 +30,7 @@ end
 
 cron_d "chef-client" do
   minute "*/15"
-  command "chef-client -c /etc/chef/client.rb"
+  command "/usr/bin/chef-client -c /etc/chef/client.rb --logfile /var/log/chef.log > /dev/null 2>&1"
   user "root"
 end
 
