@@ -15,6 +15,8 @@ when "rhel", "fedora"
     execute "get_pip" do
       command "curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python"
     end
+    include_recipe "yum-epel::default"
+    package "pymongo"
 end
 
 execute "pip_install_plugin" do

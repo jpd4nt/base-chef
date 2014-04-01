@@ -6,7 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "cron"
 
 # Fix for redhat on AWS that sub manager is broke on AWS
 if node['platform'] == "redhat" and node['platform_version'] > '6.0'
@@ -16,7 +15,7 @@ if node['platform'] == "redhat" and node['platform_version'] > '6.0'
     group  "root"
     mode   "0644"
   end
-  include_recipe "yum::epel"
+  include_recipe "yum-epel::default"
 end
 
 package "monit" do
@@ -26,22 +25,6 @@ end
 service "monit" do
   supports [:restart, :reload, :status]
   action :enable
-end
-
-cron_d "chef-client" do
-  minute "*/15"
-  command "/usr/bin/chef-client -c /etc/chef/client.rb --logfile /var/log/chef.log > /dev/null 2>&1"
-  user "root"
-end
-
-cookbook_file '/etc/init.d/chef_client' do
-  source "chef_client"
-  owner  "root"
-  group  "root"
-  mode   "0755"
-end
-service "chef_client" do
-  action [ :enable, :start ]
 end
 
 case node['platform_family']
