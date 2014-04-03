@@ -18,6 +18,12 @@ if node['platform'] == "redhat" and node['platform_version'] > '6.0'
   include_recipe "yum-epel::default"
 end
 
+cron_d "chef-client" do
+  minute "*/15"
+  command "chef-client -c /etc/chef/client.rb"
+  user "root"
+end
+
 package "monit" do
   action :install
 end
