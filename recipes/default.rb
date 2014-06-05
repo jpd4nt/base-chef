@@ -15,6 +15,9 @@ if node['platform'] == "redhat" and node['platform_version'] > '6.0'
     group  "root"
     mode   "0644"
   end
+end
+
+if node['platform_family'] == "rhel"
   include_recipe "yum-epel::default"
 end
 
