@@ -21,10 +21,6 @@ if node['platform_family'] == "rhel"
   include_recipe "yum-epel::default"
 end
 
-if node['platform_family'] == "rhel"
-  include_recipe "yum-epel::default"
-end
-
 package "monit" do
   action :install
 end
