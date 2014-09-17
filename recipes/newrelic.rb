@@ -13,7 +13,7 @@ end
 case node['platform_family']
 when "rhel", "fedora"
     execute "get_pip" do
-      command "curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python"
+      command "curl https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py | python"
     end
     include_recipe "yum-epel::default"
     package "pymongo"
