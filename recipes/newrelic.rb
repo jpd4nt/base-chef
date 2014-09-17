@@ -26,12 +26,12 @@ end
 case node['platform_family']
 when "rhel", "fedora"
     execute "copy_plugin" do 
-        command "cp /etc/init.d/newrelic_plugin_agent.rhel /etc/init.d/newrelic_plugin_agent"
+        command "cp /opt/newrelic-plugin-agent/newrelic-plugin-agent.rhel /etc/init.d/newrelic_plugin_agent"
 	not_if { ::File.exists?("/etc/init.d/newrelic_plugin_agent")}
     end
 when "debian", "ubuntu" 
     execute "copy_plugin" do
-        command "cp /etc/init.d/newrelic_plugin_agent.deb /etc/init.d/newrelic_plugin_agent"
+        command "cp /opt/newrelic-plugin-agent/newrelic-plugin-agent.deb /etc/init.d/newrelic_plugin_agent"
         not_if { ::File.exists?("/etc/init.d/newrelic_plugin_agent")}
     end
 end
